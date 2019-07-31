@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ToDo vue.js</title>
-    <link rel="stylesheet" href="https://ez-css.now.sh">
-    <style>
-    .done{
-             text-decoration: line-through;
-    }
-    </style>
+    <script src="https://kit.fontawesome.com/d4e0b40cff.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="todo.css">
 </head>
+
 <body>
-    <main id="app">
+    <main id="app" class="page_box">
         <form @submit.prevent="addTodo">
-            <label for="newTodo">New Todo</label>
-            <input v-model="newTodo" type="text" name="newTodo" id="newTodo">
-            <button type="submit" name="button">Add</button>
+            <label for="newTodo"></label>
+            <input class="form_input" v-model="newTodo" type="text" name="newTodo" id="newTodo"
+                placeholder="Add Your Task Here">
+            <button class="form_button" v-if="newTodo !== ''" type="submit" name="button">+</button>
         </form>
         <ul>
             <li v-for="todo in todos">
-                <input type="checkbox" v-model="todo.done">
-               <span :class="{ done: todo.done}">{{todo.title}}</span>
-               <button @click="removeTodo(todo)" type="button" name="button">Remove</button>
+                <span :class="{ done: todo.done}">{{todo.title}}</span>
+                <div>
+                    <input type="checkbox" v-model="todo.done">
+                    <button @click="removeTodo(todo)" type="button" name="button"><i style="color:red;font-size: 25px"
+                            class="fas fa-trash-alt"></i></button>
+                </div>
             </li>
         </ul>
     </main>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="todo.js"  charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="todo.js" charset="utf-8"></script>
 </body>
+
 </html>
